@@ -1,34 +1,43 @@
-name: test
-
-on: workflow_dispatch
-
-env:
-  FOUNDRY_PROFILE: ci
+name: brevity test
+on:
+  push:
+    branches: [ main ]
 
 jobs:
-  check:
-    strategy:
-      fail-fast: true
-
-    name: Foundry project
+  build:
+    name: brevity test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          submodules: recursive
+          node-version: 16.x
+
+      - name: run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install 
 
       - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
+        uses: foundry-rs/foundry-toolchain@v1       
+
+      - name: test contracts
+        uses: borales/actions-yarn@v4
         with:
-          version: nightly
+          cmd: test
 
-      - name: Run Forge build
-        run: |
-          forge --version
-          forge build --sizes
-        id: build
+      - name: build contracts
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build
 
-      - name: Run Forge tests
-        run: |
-          forge test -vvv
-        id: test
+      - name: compile and deploy contracts
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: anvil:deploy
+        env:
+          MNEMONIC: ${{ secrets.MNEMONIC }}
+          TARGET_NETWORK: ${{ vars.TARGET_NETWORK }}
+          INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}

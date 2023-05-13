@@ -6,7 +6,8 @@
         "anvil": "anvil",
         "build": "yarn exec forge build",
         "deploy": "yarn ts-node src/scripts/deploy.ts",
-        "compile": "npm-run-all -p -r anvil deploy"
+        "test": "yarn exec forge test",
+        "anvil:deploy": "npm-run-all -p -r anvil deploy"
     },
     "devDependencies": {
         "@types/node": "^20.1.4",
