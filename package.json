@@ -1,0 +1,22 @@
+{
+    "name": "brevity",
+    "version": "0.1.0",
+    "license": "MIT",
+    "scripts": {
+        "anvil": "anvil",
+        "build": "yarn exec forge build",
+        "deploy": "yarn ts-node src/scripts/deploy.ts",
+        "compile": "npm-run-all -p -r anvil deploy"
+    },
+    "devDependencies": {
+        "@types/node": "^20.1.4",
+        "@types/shelljs": "^0.8.11",
+        "dotenv": "^16.0.2",
+        "eth-hooks": "5.0.2-beta27",
+        "npm-run-all": "^4.1.5",
+        "shelljs": "^0.8.5",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.8.3",
+        "zod": "^3.19.1"
+    }
+}
