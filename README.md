@@ -18,3 +18,8 @@ yarn start
 
 * Add the applicable secrets and vars to the github repo settings
 * Create the project on vercel
+
+### Reference Projects
+
+* https://github.com/scaffold-eth/scaffold-eth-typescript
+* https://github.com/blacksmith-eth/blacksmith

@@ -1,7 +1,7 @@
 {
-  "localhost": {
-    "Counter": {
-      "address": "0x4ed7c70f96b99c776995fb64377f0d4ab3b0e1c1",
+  "31337": {
+    "0xc3e53f4d16ae77db1c982e75a937b9f60fe63690": {
+      "name": "Counter",
       "abi": [
         {
           "inputs": [],
@@ -36,7 +36,8 @@
           "stateMutability": "nonpayable",
           "type": "function"
         }
-      ]
+      ],
+      "address": "0xc3e53f4d16ae77db1c982e75a937b9f60fe63690"
     }
   }
 }

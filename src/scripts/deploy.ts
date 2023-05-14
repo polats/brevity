@@ -31,18 +31,21 @@ const getAddressFromStdout = (stdout: string): string => {
 const saveContractInfoJson = async (network: string, name: string, address: string, abi: string): Promise<void> => {
 
     let previousJson = {};
-
+   
     try {   
         previousJson = JSON.parse(await fs.readFileSync(CONTRACT_INFO_FILE_PATH, 'utf8'));
     } catch (err) {
         console.log("missing contractInfo.json file, creating new one");
     }
 
+    const chainId = networkDefinitions[network].chainId;
+ 
     const contractInfo = {
-        [network]: {
-            [name]: {
-                address: address,
-                abi: JSON.parse(abi)
+        [chainId]: {
+            [address]: {
+                name: name,
+                abi: JSON.parse(abi),
+                address: address
             }
         }
     }
