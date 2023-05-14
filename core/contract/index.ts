@@ -1,11 +1,11 @@
-import { db } from "core/database";
-import type { Address, ContractDetails } from "core/types";
+import { db } from "../database";
+import type { Address, ContractDetails } from "../types";
 
 const LOCALHOST_CHAIN_ID = "31337";
 
 const insert = async (data: ContractDetails) => {
   await db.read();
-  db.data.contracts[data.address] = data;
+  (db.data as any).contracts[data.address] = data;
   return db.write();
 };
 
@@ -17,13 +17,13 @@ const findAll = async () => {
 
 const remove = async (address: Address) => {
   await db.read();
-  delete db.data.contracts[address];
+  delete (db.data as any).contracts[address];
   return db.write();
 };
 
 const removeAll = async () => {
   await db.read();
-  db.data.contracts = {};
+  (db.data as any).contracts = {};
   return db.write();
 };
 

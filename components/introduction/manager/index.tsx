@@ -2,9 +2,9 @@ import {
   ArchiveBoxXMarkIcon,
   PlusSmallIcon,
 } from "@heroicons/react/24/outline";
-import { Anchor } from "components/anchor";
-import { Field } from "components/field";
-import { useContracts } from "hooks";
+import { Anchor } from "../../anchor";
+import { Field } from "../../field";
+import { useContracts } from "../../../hooks";
 import {
   ButtonHTMLAttributes,
   ChangeEvent,

@@ -1,4 +1,4 @@
-import { ContractDetails } from "core/types";
+import { ContractDetails } from "../../core/types";
 import useSWR from "swr";
 
 const fetchContracts = async (): Promise<ContractDetails[]> => {

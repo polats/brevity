@@ -1,14 +1,14 @@
-import { Button } from "components/button";
-import { Field } from "components/field";
-import { Inputs } from "components/inputs";
-import { Listbox } from "components/listbox";
+import { Button } from "../../button";
+import { Field } from "../../field";
+import { Inputs } from "../../inputs";
+import { Listbox } from "../../listbox";
 import {
   Abi,
   AbiDefinedPayableFunction,
   AbiParameterWithComponents,
   Address,
-} from "core/types";
-import { useArgs, useEther, useToggle } from "hooks";
+} from "../../../core/types";
+import { useArgs, useEther, useToggle } from "../../../hooks";
 import { useContractWrite } from "wagmi";
 import { Container } from "../container";
 import { Output } from "../output";

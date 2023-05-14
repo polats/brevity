@@ -4,8 +4,8 @@ import {
   BlacksmithSigner,
   BlacksmithWalletOptions,
   BlacksmithWalletProvider,
-} from "packages/core/wallet";
-import { BlacksmithConnector } from "packages/core/connector";
+} from "../core/wallet";
+import { BlacksmithConnector } from "../core/connector";
 
 const connector = ({
   chains,

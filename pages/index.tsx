@@ -1,4 +1,4 @@
-import { Introduction } from "components/introduction";
+import { Introduction } from "../components/introduction";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => (

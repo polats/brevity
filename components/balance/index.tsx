@@ -1,4 +1,4 @@
-import { Address } from "core/types";
+import { Address } from "../../core/types";
 import { useBalance } from "wagmi";
 
 type BalanceProps = {

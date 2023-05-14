@@ -1,6 +1,6 @@
-import { Button } from "components/button";
-import { Field } from "components/field";
-import { Arg } from "core/types";
+import { Button } from "../button";
+import { Field } from "../field";
+import { Arg } from "../../core/types";
 import { ChangeEvent } from "react";
 
 type InputsProps = {
@@ -46,10 +46,10 @@ export const Inputs = ({
                   <Button
                     disabled={preview}
                     onClick={() => {
-                      updateValue([...keys, index], [
-                        ...arg.value,
-                        arg.childArg,
-                      ] as Arg[]);
+                      // updateValue([...keys, index], [
+                      //   ...arg.value,
+                      //   arg.childArg,
+                      // ] as Arg[]);
                     }}
                   >
                     <span>+</span>

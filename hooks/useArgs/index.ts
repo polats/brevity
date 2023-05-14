@@ -1,4 +1,4 @@
-import { AbiParameterWithComponents, Arg } from "core/types";
+import { AbiParameterWithComponents, Arg } from "../../core/types";
 import { BigNumber } from "ethers";
 import times from "lodash/times";
 import { useCallback, useState } from "react";

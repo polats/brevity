@@ -1,6 +1,6 @@
-import { contract } from "core/contract";
-import type { Address } from "core/types";
-import { getAddress } from "core/utils";
+import { contract } from "../../../core/contract";
+import type { Address } from "../../../core/types";
+import { getAddress } from "../../../core/utils";
 import isNull from "lodash/isNull";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
@@ -32,9 +32,9 @@ const requestSchema = z.object({
 const postHandler = (req: NextApiRequest, res: NextApiResponse) => {
   const result = requestSchema.safeParse(req.query);
   if (!result.success) {
-    return res.status(400).json({ error: result.error.message });
+    return res.status(400).json({ error: (result as any).error.message });
   }
-  return fetch(buildGetSourceCodeUrl(result.data.address), {
+  return fetch(buildGetSourceCodeUrl((result as any).data.address), {
     headers: {
       "Content-Type": "application/json",
     },
@@ -56,7 +56,7 @@ const postHandler = (req: NextApiRequest, res: NextApiResponse) => {
 const deleteHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const result = requestSchema.safeParse(req.query);
   if (!result.success) {
-    return res.status(400).json({ error: result.error.message });
+    return res.status(400).json({ error: (result as any).error.message });
   }
   await contract.remove(result.data.address);
   return res.status(200).json({});

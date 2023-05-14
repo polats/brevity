@@ -2,7 +2,7 @@ import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import {
   AbiDefinedStateFunction,
   AbiParameterWithComponents,
-} from "core/types";
+} from "../../../core/types";
 
 type SignatureProps = {
   func: AbiDefinedStateFunction;

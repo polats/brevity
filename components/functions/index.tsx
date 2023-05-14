@@ -1,5 +1,5 @@
-import { AbiDefinedStateFunction, Address } from "core/types";
-import { Func } from "components/function";
+import { AbiDefinedStateFunction, Address } from "../../core/types";
+import { Func } from "../function";
 
 type FunctionsProps = {
   address: Address;

@@ -8,7 +8,7 @@ export type BlacksmithWalletOptions =
 export type BlacksmithSigner = providers.JsonRpcSigner;
 
 export class BlacksmithWalletProvider extends providers.JsonRpcProvider {
-  #accountIndex = 0;
+  accountIndex = 0;
 
   constructor(options: BlacksmithWalletOptions = []) {
     super(options[0], options[1]);
@@ -16,11 +16,11 @@ export class BlacksmithWalletProvider extends providers.JsonRpcProvider {
 
   async getAccount(): Promise<Address> {
     const accounts = (await this.listAccounts()) as Address[];
-    return accounts[this.#accountIndex];
+    return accounts[this.accountIndex];
   }
 
   getSigner() {
-    return super.getSigner(this.#accountIndex);
+    return super.getSigner(this.accountIndex);
   }
 
   async changeAccount(indexOrAddress: number | string) {
@@ -29,7 +29,7 @@ export class BlacksmithWalletProvider extends providers.JsonRpcProvider {
       typeof indexOrAddress === "number"
         ? indexOrAddress
         : accounts.indexOf(indexOrAddress);
-    this.#accountIndex = index;
+    this.accountIndex = index;
     this.emit("accountsChanged", [accounts[index]]);
   }
 }

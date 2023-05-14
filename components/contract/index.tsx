@@ -1,9 +1,9 @@
 import { Square2StackIcon } from "@heroicons/react/24/outline";
-import { Balance } from "components/balance";
-import { Functions } from "components/functions";
-import { Introduction } from "components/introduction";
-import { Abi, AbiDefinedStateFunction, Address } from "core/types";
-import { useContracts } from "hooks";
+import { Balance } from "../balance";
+import { Functions } from "../functions";
+import { Introduction } from "../introduction";
+import { Abi, AbiDefinedStateFunction, Address } from "../../core/types";
+import { useContracts } from "../../hooks";
 
 const filterDefinedFunctions = (abi: Abi): AbiDefinedStateFunction[] =>
   abi.filter(({ type }) => type === "function") as AbiDefinedStateFunction[];

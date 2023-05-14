@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { solidityToolkits, NetworkNamesList, reactBuilds } from '~common/models';
+import { solidityToolkits, NetworkNamesList, reactBuilds } from '../models';
 
 export const scaffoldConfigSchema = z.object({
   build: z.object({

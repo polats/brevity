@@ -1,12 +1,12 @@
-import { Button } from "components/button";
-import { Inputs } from "components/inputs";
+import { Button } from "../../button";
+import { Inputs } from "../../inputs";
 import {
   Abi,
   AbiDefinedNonpayableFunction,
   AbiParameterWithComponents,
   Address,
-} from "core/types";
-import { useArgs, useToggle } from "hooks";
+} from "../../../core/types";
+import { useArgs, useToggle } from "../../../hooks";
 import { useContractWrite } from "wagmi";
 import { Container } from "../container";
 import { Output } from "../output";

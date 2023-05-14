@@ -1,5 +1,5 @@
-import { ContractDetails } from "core/types";
-import { useContracts } from "hooks";
+import { ContractDetails } from "../../core/types";
+import { useContracts } from "../../hooks";
 import Link from "next/link";
 import { useRouter } from "next/router";
 

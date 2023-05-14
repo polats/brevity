@@ -1,5 +1,5 @@
-import { Contract } from "components/contract";
-import { Address } from "core/types";
+import { Contract } from "../../components/contract";
+import { Address } from "../../core/types";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 

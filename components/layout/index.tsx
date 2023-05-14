@@ -1,8 +1,8 @@
-import { Contracts } from "components/contracts";
-import { Footer } from "components/footer";
-import { Header } from "components/header";
-import { Wallet } from "components/wallet";
-import { useToggle } from "hooks";
+import { Contracts } from "../contracts";
+import { Footer } from "../footer";
+import { Header } from "../header";
+import { Wallet } from "../wallet";
+import { useToggle } from "../../hooks";
 import Head from "next/head";
 import { ReactElement } from "react";
 

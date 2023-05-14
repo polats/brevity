@@ -1,6 +1,6 @@
 import { Listbox } from "@headlessui/react";
-import { Address } from "core/types";
-import { BlacksmithConnector } from "packages/core/connector";
+import { Address } from "../../../core/types";
+import { BlacksmithConnector } from "../../../packages/core/connector";
 import { PropsWithChildren, useEffect, useState } from "react";
 import { useAccount, useBalance } from "wagmi";
 

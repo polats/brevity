@@ -1,5 +1,5 @@
 import { getAddress as _getAddress } from "viem";
-import { Address } from "core/types";
+import { Address } from "../types";
 
 const getAddress = (address: Address) => {
   try {

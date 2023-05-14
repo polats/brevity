@@ -3,7 +3,7 @@ import {
   BlacksmithWalletOptions,
   BlacksmithWalletProvider,
   BlacksmithSigner,
-} from "packages/core/wallet";
+} from "../wallet";
 
 export class BlacksmithConnector extends Connector<
   BlacksmithWalletProvider,
@@ -14,7 +14,7 @@ export class BlacksmithConnector extends Connector<
   readonly name = "Blacksmith";
   readonly ready = true;
 
-  #provider: BlacksmithWalletProvider;
+  provider: BlacksmithWalletProvider;
 
   constructor({
     chains,
@@ -26,7 +26,7 @@ export class BlacksmithConnector extends Connector<
     provider?: BlacksmithWalletProvider;
   } = {}) {
     super({ chains, options });
-    this.#provider = provider || new BlacksmithWalletProvider(options);
+    this.provider = provider || new BlacksmithWalletProvider(options);
   }
 
   async connect() {
@@ -68,7 +68,7 @@ export class BlacksmithConnector extends Connector<
   }
 
   async getProvider() {
-    return this.#provider;
+    return this.provider;
   }
 
   async getSigner() {

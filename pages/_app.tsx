@@ -11,9 +11,9 @@ import {
 import { ThemeProvider } from "next-themes";
 import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
-import { blacksmithWallet } from "packages/wallets";
-import { forkedChains, foundry } from "core/chains";
-import { Layout } from "components/layout";
+import { blacksmithWallet } from "../packages/wallets";
+import { forkedChains, foundry } from "../core/chains";
+import { Layout } from "../components/layout";
 
 const inter = Inter({
   subsets: ["latin"],

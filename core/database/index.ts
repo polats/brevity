@@ -1,6 +1,6 @@
 import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";
-import type { Address, ContractDetails } from "core/types";
+import type { Address, ContractDetails } from "../types";
 
 const LOCALHOST_CHAIN_ID = "31337";
 
