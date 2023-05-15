@@ -19,11 +19,11 @@ export const Contract = ({ chain, address }: ContractProps) => {
   // if (isLoading) return <div>loading...</div>;
   // if (isError) return <div>error</div>;
   
-  const contracts = contractsInChain.find((selectedChain) => selectedChain.chainName === chain).contracts;
-  const contract = contracts.find((contract) => contract.address === address);
+  const contracts = contractsInChain?.find((selectedChain) => selectedChain.chainName === chain)?.contracts;
+  const contract = contracts?.find((contract) => contract.address === address);
   if (!contract)
     return (
-      <>
+      (chain && address && (
         <div>
           Selected contract{" "}
           <span className="font-mono bg-slate-100 dark:bg-black px-1 rounded">
@@ -31,8 +31,7 @@ export const Contract = ({ chain, address }: ContractProps) => {
           </span>{" "}
           not found.
         </div>
-        <Introduction />
-      </>
+      ))
     );
 
   const handleCopyAddress = () => {
