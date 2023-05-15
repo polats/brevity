@@ -1,10 +1,9 @@
-import { ContractDetails } from "../../core/types";
+import { ContractsInChain, ContractDetails } from "../../core/types";
 import useSWR from "swr";
 import contractData from "../../contractInfo"
+import { Contract } from "../../components/contract";
 
-const LOCALHOST_CHAIN_ID = "31337";
-
-const fetchContracts = async (): Promise<ContractDetails[]> => {
+const fetchContracts = async (): Promise<ContractsInChain[]> => {
   const response = await fetch("/api/contracts");
   const data = await response.json();
 
@@ -27,12 +26,26 @@ export const useContracts = () => {
   //   isError: !!error,
   // };
 
-  let contractDetails : ContractDetails[] = [];
+  let contractsInChain : ContractsInChain[] = [];
+  for (const chain in contractData) {
 
-  contractDetails.push(contractData[LOCALHOST_CHAIN_ID][0] as ContractDetails);
+    let chainObject : ContractsInChain;
+    let contractArray : ContractDetails[] = [];
+
+    for (const contract in contractData[chain]) {
+      contractArray.push(contractData[chain][contract] as ContractDetails);
+    }
+    chainObject = {
+      chainName: chain,
+      contracts: contractArray
+    }
+    
+    contractsInChain.push(chainObject);
+
+  }
 
   return {
-    contracts: contractDetails
+    contractsInChain: contractsInChain
   }
 
 

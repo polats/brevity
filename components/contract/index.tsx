@@ -8,14 +8,18 @@ import { useContracts } from "../../hooks";
 const filterDefinedFunctions = (abi: Abi): AbiDefinedStateFunction[] =>
   abi.filter(({ type }) => type === "function") as AbiDefinedStateFunction[];
 
-type ContractProps = { address: Address };
+type ContractProps = { 
+  chain: string, 
+  address: Address 
+};
 
-export const Contract = ({ address }: ContractProps) => {
-  const { contracts } = useContracts();
+export const Contract = ({ chain, address }: ContractProps) => {
+  const { contractsInChain } = useContracts();
 
   // if (isLoading) return <div>loading...</div>;
   // if (isError) return <div>error</div>;
   
+  const contracts = contractsInChain.find((selectedChain) => selectedChain.chainName === chain).contracts;
   const contract = contracts.find((contract) => contract.address === address);
   if (!contract)
     return (
@@ -23,7 +27,7 @@ export const Contract = ({ address }: ContractProps) => {
         <div>
           Selected contract{" "}
           <span className="font-mono bg-slate-100 dark:bg-black px-1 rounded">
-            {address}
+            {chain + " | " + address}
           </span>{" "}
           not found.
         </div>
@@ -38,7 +42,7 @@ export const Contract = ({ address }: ContractProps) => {
   return (
     <section>
       <h3 className="font-bold text-2xl">{contract.name}</h3>
-      <h4 className="inline">{contract.address}</h4>
+      <h4 className="inline">{chain + " | " + contract.address}</h4>
       <button
         className="inline p-0.5 mx-0.5 rounded-sm text-black dark:text-white focus:bg-black focus:text-white dark:focus:bg-white dark:focus:text-black focus:outline-none"
         onClick={handleCopyAddress}

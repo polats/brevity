@@ -51,6 +51,11 @@ export type ContractDetails = {
   // version: string;
 };
 
+export type ContractsInChain = {
+  chainName: string;
+  contracts: ContractDetails[];
+}
+
 export type Result = string | BigNumber | undefined | null | Result[];
 
 export * from "abitype";

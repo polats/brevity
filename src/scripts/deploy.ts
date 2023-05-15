@@ -3,6 +3,7 @@ import fs from 'fs';
 import _ from 'lodash';
 import shell from 'shelljs';
 import { invariant } from 'ts-invariant';
+import { hideBin } from 'yargs/helpers';
 
 import { networkDefinitions } from '../constants';
 import { TNetworkNamesList } from '../models';
@@ -70,9 +71,7 @@ const saveContractInfo = async (network: string, name: string, address: string, 
 
 }
 
-export const deploy = async (): Promise<void> => {
-  const network = process.env.TARGET_NETWORK as TNetworkNamesList ?? 'localhost';
-
+export const deploy = async (network): Promise<void> => {
   const createCmd = await createFoundryDeployArgs({ network });
 
   console.log(createCmd);
@@ -95,7 +94,14 @@ export const createFoundryDeployArgs = async (
 ): Promise<string> => {
   // const mnemonicPaths = await getMnemonicPath(sender);
   // const mnemonic = getMnemonic(mnemonicPaths);
-  const mnemonic = process.env.MNEMONIC as string;
+  let mnemonic = process.env.LOCAL_MNEMONIC as string;
+
+  switch (network) {
+    case 'sepolia':
+      mnemonic = process.env.TESTNET_MNEMONIC as string;
+      break;
+  }
+
   const wallet = ethers.Wallet.fromMnemonic(mnemonic);
   invariant(wallet.address, 'Could not find find mnemonic and address, create MNEMONIC variable in .env');
 
@@ -111,4 +117,6 @@ export const createFoundryDeployArgs = async (
   return cmd;
 };
 
-void deploy();
+let network = hideBin(process.argv)[0] ?? "localhost";
+
+void deploy(network);

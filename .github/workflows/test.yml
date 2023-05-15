@@ -38,6 +38,6 @@ jobs:
         with:
           cmd: anvil:deploy
         env:
-          MNEMONIC: ${{ secrets.MNEMONIC }}
-          TARGET_NETWORK: ${{ vars.TARGET_NETWORK }}
+          LOCAL_MNEMONIC: ${{ secrets.LOCAL_MNEMONIC }}
+          TESTNET_MNEMONIC: ${{ secrets.TESTNET_MNEMONIC }}
           INFURA_API_KEY: ${{ secrets.INFURA_API_KEY }}
