@@ -45,8 +45,7 @@ const postHandler = (req: NextApiRequest, res: NextApiResponse) => {
       contract.insert({
         abi: JSON.parse(ABI),
         address: result.data.address,
-        name: ContractName,
-        version: CompilerVersion,
+        name: ContractName
       });
       return res.status(200).json({});
     })

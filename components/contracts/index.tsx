@@ -6,10 +6,11 @@ import { useRouter } from "next/router";
 export const Contracts = () => {
   const router = useRouter();
   const { address } = router.query;
-  const { contracts, isLoading, isError } = useContracts();
+  const { contracts } = useContracts();
 
-  if (isLoading) return <div className="flex-grow">loading...</div>;
-  if (isError) return <div className="flex-grow">error</div>;
+  // if (isLoading) return <div className="flex-grow">loading...</div>;
+  // if (isError) return <div className="flex-grow">error</div>;
+
   if (contracts.length === 0)
     return <div className="flex-grow">No contracts</div>;
   return (

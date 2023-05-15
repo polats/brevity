@@ -11,10 +11,11 @@ const filterDefinedFunctions = (abi: Abi): AbiDefinedStateFunction[] =>
 type ContractProps = { address: Address };
 
 export const Contract = ({ address }: ContractProps) => {
-  const { contracts, isLoading, isError } = useContracts();
+  const { contracts } = useContracts();
 
-  if (isLoading) return <div>loading...</div>;
-  if (isError) return <div>error</div>;
+  // if (isLoading) return <div>loading...</div>;
+  // if (isError) return <div>error</div>;
+  
   const contract = contracts.find((contract) => contract.address === address);
   if (!contract)
     return (

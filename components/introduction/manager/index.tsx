@@ -30,7 +30,7 @@ export const Manager = () => {
   const [response, setResponse] = useState("");
   const [deleteAllResponse, setDeleteAllResponse] = useState("");
   const [address, setAddress] = useState("");
-  const { mutate } = useContracts();
+  // const { mutate } = useContracts();
 
   const handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
     setAddress(event.target.value);
@@ -44,7 +44,7 @@ export const Manager = () => {
         ? "Imported successfully"
         : "Import failed";
       setResponse(responseMessage);
-      mutate();
+      // mutate();
     });
   };
 
@@ -56,7 +56,7 @@ export const Manager = () => {
         ? "Removed successfully"
         : "Remove failed";
       setResponse(responseMessage);
-      mutate();
+      // mutate();
     });
   };
 
@@ -65,7 +65,7 @@ export const Manager = () => {
       method: "DELETE",
     }).then(() => {
       setDeleteAllResponse("Removed all contracts");
-      mutate();
+      // mutate();
     });
   };
 
