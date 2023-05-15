@@ -48,7 +48,7 @@ export type ContractDetails = {
   abi: Abi;
   address: Address;
   name: string;
-  version: string;
+  // version: string;
 };
 
 export type Result = string | BigNumber | undefined | null | Result[];

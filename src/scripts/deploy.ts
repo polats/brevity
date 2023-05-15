@@ -16,7 +16,8 @@ interface IForgeScriptsRequiredArgs {
   sender?: string;
 }
 
-const CONTRACT_INFO_FILE_PATH = "contractInfo.json";
+const CONTRACT_INFO_FILE_PATH_JSON = "contractInfo.json";
+const CONTRACT_INFO_FILE_PATH_TS = "contractInfo.ts";
 
 const CONTRACT_NAME = 'Counter';
 const CONTRACT_SCRIPT = 'Counter.s.sol'
@@ -28,12 +29,12 @@ const getAddressFromStdout = (stdout: string): string => {
     return address;
 }
 
-const saveContractInfoJson = async (network: string, name: string, address: string, abi: string): Promise<void> => {
+const saveContractInfo = async (network: string, name: string, address: string, abi: string): Promise<void> => {
 
     let previousJson = {};
    
     try {   
-        previousJson = JSON.parse(await fs.readFileSync(CONTRACT_INFO_FILE_PATH, 'utf8'));
+        previousJson = JSON.parse(await fs.readFileSync(CONTRACT_INFO_FILE_PATH_JSON, 'utf8'));
     } catch (err) {
         console.log("missing contractInfo.json file, creating new one");
     }
@@ -41,24 +42,32 @@ const saveContractInfoJson = async (network: string, name: string, address: stri
     const chainId = networkDefinitions[network].chainId;
  
     const contractInfo = {
-        [chainId]: {
-            [address]: {
+        [chainId]: [
+          {
                 name: name,
                 abi: JSON.parse(abi),
                 address: address
-            }
-        }
+          }
+        ]
     }
    
-    let newJson = _.merge(previousJson, contractInfo);
+    let newJson = JSON.stringify(_.merge(previousJson, contractInfo), null, 2);
 
-    fs.writeFile(CONTRACT_INFO_FILE_PATH, JSON.stringify(newJson, null, 2), (err) => {
+
+    fs.writeFile(CONTRACT_INFO_FILE_PATH_JSON, newJson, (err) => {
         if (err) {
             console.log(err);
         }
     });
 
-    console.log("Contract info saved to " + CONTRACT_INFO_FILE_PATH);
+    let jsonToTs = "export default " + newJson + ";";
+
+    fs.writeFile(CONTRACT_INFO_FILE_PATH_TS, jsonToTs, (err) => {
+      if (err) {
+          console.log(err);
+      }
+  });
+
 }
 
 export const deploy = async (): Promise<void> => {
@@ -77,7 +86,7 @@ export const deploy = async (): Promise<void> => {
 
   console.log(abi);
 
-  saveContractInfoJson(network, CONTRACT_NAME, address, abi);  
+  saveContractInfo(network, CONTRACT_NAME, address, abi);  
 };
 
 export const createFoundryDeployArgs = async (
