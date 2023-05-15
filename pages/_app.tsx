@@ -8,11 +8,18 @@ import {
   darkTheme,
   lightTheme,
 } from "@rainbow-me/rainbowkit";
+import {
+  metaMaskWallet,
+  injectedWallet,
+  rainbowWallet,
+  walletConnectWallet
+} from "@rainbow-me/rainbowkit/wallets";
 import { ThemeProvider } from "next-themes";
 import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { blacksmithWallet } from "../packages/wallets";
-import { forkedChains, foundry } from "../core/chains";
+import { sepolia } from "wagmi/chains";
+import { foundry } from "../core/chains";
 import { Layout } from "../components/layout";
 
 const inter = Inter({
@@ -26,13 +33,20 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [foundry, ...forkedChains],
+  [foundry, sepolia],
   [publicProvider()]
 );
 
 const connectors = connectorsForWallets([
   {
-    groupName: "Blacksmith",
+    groupName: "Recommended",
+    wallets: [
+      injectedWallet({ chains }),
+      metaMaskWallet({ chains })
+    ]
+  },
+  {
+    groupName: "Foundry (requires local anvil node)",
     wallets: [blacksmithWallet({ chains })],
   },
 ]);
