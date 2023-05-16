@@ -26,6 +26,7 @@
     },
     "devDependencies": {
         "@openzeppelin/contracts": "4.7.3",
+        "@solidstate/contracts": "^0.0.52",
         "@types/lodash": "^4.14.194",
         "@types/node": "^20.1.4",
         "@types/react": "18.2.6",
