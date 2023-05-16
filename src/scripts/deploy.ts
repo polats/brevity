@@ -20,9 +20,14 @@ interface IForgeScriptsRequiredArgs {
 const CONTRACT_INFO_FILE_PATH_JSON = "contractInfo.json";
 const CONTRACT_INFO_FILE_PATH_TS = "contractInfo.ts";
 
-const CONTRACT_NAME = 'Counter';
-const CONTRACT_SCRIPT = 'Counter.s.sol'
-const DEPLOY_FUNCTION = 'CounterScript';
+// const CONTRACT_NAME = 'Counter';
+// const CONTRACT_SCRIPT = 'Counter.s.sol'
+// const DEPLOY_FUNCTION = 'CounterScript';
+
+const CONTRACT_NAME = 'YourNFT';
+const CONTRACT_SCRIPT = 'YourNFT.deploy.s.sol'
+const DEPLOY_FUNCTION = 'YourNFTDeploy';
+
 
 const getAddressFromStdout = (stdout: string): string => {
     var address = stdout.split("Contract Address: ")[1].split("\n")[0];
@@ -40,10 +45,10 @@ const saveContractInfo = async (network: string, name: string, address: string, 
         console.log("missing contractInfo.json file, creating new one");
     }
 
-    const chainId = networkDefinitions[network].chainId;
+    // const chainId = networkDefinitions[network].chainId;
  
     const contractInfo = {
-        [chainId]: [
+        [network]: [
           {
                 name: name,
                 abi: JSON.parse(abi),
@@ -51,8 +56,14 @@ const saveContractInfo = async (network: string, name: string, address: string, 
           }
         ]
     }
+
+    function customizer(objValue, srcValue) {
+      if (_.isArray(objValue)) {
+        return objValue.concat(srcValue);
+      }
+    }    
    
-    let newJson = JSON.stringify(_.merge(previousJson, contractInfo), null, 2);
+    let newJson = JSON.stringify(_.mergeWith(previousJson, contractInfo, customizer), null, 2);
 
 
     fs.writeFile(CONTRACT_INFO_FILE_PATH_JSON, newJson, (err) => {
@@ -76,7 +87,14 @@ export const deploy = async (network): Promise<void> => {
 
   console.log(createCmd);
 
-  const address = getAddressFromStdout(shell.exec(createCmd, { silent: true, async: false }));
+  const deployResult = shell.exec(createCmd, { silent: true, async: false });
+
+  if (deployResult.code !== 0) {
+    console.error(deployResult.stderr);
+    return;
+  }
+
+  const address = getAddressFromStdout(deployResult);
 
   console.log(CONTRACT_NAME + " | " + network + " | " + address);
 
