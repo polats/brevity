@@ -120,6 +120,7 @@ export const createFoundryDeployArgs = async (
 
   switch (network) {
     case 'sepolia':
+    case 'goerli':
       mnemonic = process.env.TESTNET_MNEMONIC as string;
       break;
   }

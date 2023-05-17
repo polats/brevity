@@ -18,7 +18,7 @@ import { ThemeProvider } from "next-themes";
 import { WagmiConfig, configureChains, createClient } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 import { blacksmithWallet } from "../packages/wallets";
-import { sepolia } from "wagmi/chains";
+import { sepolia, goerli } from "wagmi/chains";
 import { foundry } from "../core/chains";
 import { Layout } from "../components/layout";
 
@@ -33,7 +33,7 @@ const sourceCodePro = Source_Code_Pro({
 });
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [foundry, sepolia],
+  [foundry, sepolia, goerli],
   [publicProvider()]
 );
 

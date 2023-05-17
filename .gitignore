@@ -19,3 +19,6 @@ node_modules/
 
 # nextjs
 .next
+
+# yarn
+yarn-error.log
