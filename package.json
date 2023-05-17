@@ -5,7 +5,7 @@
     "scripts": {
         "indexer:build": "yarn workspace event-processor-nfts build",
         "dev": "next dev",
-        "build": "next build",
+        "build": "yarn indexer:build && next build",
         "start": "next start",
         "anvil": "anvil",
         "forge:build": "yarn exec forge build",
