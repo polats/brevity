@@ -1,5 +1,4 @@
 import type {EIP1193Provider} from 'eip-1193';
-
 import {
 	createIndexerState,
 	type Abi,
@@ -11,7 +10,9 @@ import {
 	keepStreamOnIndexedDB,
 } from 'ethereum-indexer-browser';
 
-export function createIndexeInitializer<ABI extends Abi, ProcessResultType, ProcessorConfig = undefined>(
+import react from 'react';
+
+export function createIndexerInitializer<ABI extends Abi, ProcessResultType, ProcessorConfig = undefined>(
 	name: string,
 	processor: EventProcessorWithInitialState<ABI, ProcessResultType, ProcessorConfig>,
 	contracts: readonly ContractData<ABI>[] | AllContractData<ABI>,
@@ -23,13 +24,17 @@ export function createIndexeInitializer<ABI extends Abi, ProcessResultType, Proc
 		keepStream: keepStreamOnIndexedDB(name),
 	});
 
-	const {init, indexToLatest, indexMore, startAutoIndexing, indexMoreAndCatchupIfNeeded} = indexer;
+	const {state, init, indexToLatest, indexMore, startAutoIndexing, indexMoreAndCatchupIfNeeded} = indexer;
 
 	function indexContinuously(provider: EIP1193Provider) {
 		let timeout: number | undefined;
 		let currentSubscriptionId: `0x${string}` | undefined;
 
 		function onNewHeads(message: {type: string; data: {subscription: `0x${string}`}}) {
+
+			console.log("newheads: ");
+			console.log(state);
+
 			if (message.type === 'eth_subscription') {
 				if (message?.data?.subscription === currentSubscriptionId) {
 					resetNewHeadsTimeout();
@@ -111,6 +116,8 @@ export function createIndexeInitializer<ABI extends Abi, ProcessResultType, Proc
 			indexContinuously(connection.ethereum);
 		});
 	}
-	(window as any).indexer = indexer;
+
+	// (window as any).indexer = indexer;
+
 	return {...indexer, initialize};
 }
