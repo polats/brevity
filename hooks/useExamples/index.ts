@@ -13,12 +13,12 @@ export const EXAMPLES_LIST: ExampleProps[] = [
         "name" : "🍥 ERC-6551 Itemizer"
     },
     {
-        "path" : "/examples/indexer",
-        "name" : "🔗 Indexer"
-    },
-    {
         "path" : "/examples/contract",
         "name" : "📜 Contract"
+    },
+    {
+        "path" : "/examples/indexer",
+        "name" : "🔗 Basic Indexer"
     }
 
 ]
