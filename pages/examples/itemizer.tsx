@@ -1,6 +1,6 @@
 import { fromJSProcessor, JSProcessor } from "ethereum-indexer-js-processor";
-import {createProcessor, contractsData } from '../event-processor-nfts';
-import {createIndexerInitializer} from '../utils/indexer';
+import {createProcessor, contractsData } from 'event-processor-nfts/dist';
+import {createIndexerInitializer} from '../../utils/indexer';
 import type {EIP1193Provider} from 'eip-1193';
 
 import {
@@ -9,15 +9,15 @@ import {
   keepStreamOnIndexedDB,
   type LogParseConfig,
 } from "ethereum-indexer-browser";
-import { connect } from "../utils/web3";
+import { connect } from "../../utils/web3";
 import react from "react";
 import { useEffect } from "react";
 
 import type { NextPage } from "next";
-import { Button } from "../components/button";
+import { Button } from "../../components/button";
 
 import { useAccount, useConnect, useNetwork } from "wagmi";
-import { Address } from "../core/types";
+import { Address } from "../../core/types";
 
 const Itemizer: NextPage = () => {
 

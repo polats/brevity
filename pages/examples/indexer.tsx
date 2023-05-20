@@ -3,7 +3,7 @@ import {
   createIndexerState,
   keepStateOnIndexedDB,
 } from "ethereum-indexer-browser";
-import { connect } from "../utils/web3";
+import { connect } from "../../utils/web3";
 import react from "react";
 import { useEffect } from "react";
 
