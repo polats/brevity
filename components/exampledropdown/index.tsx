@@ -35,7 +35,7 @@ export const ExampleDropdown = ({ example, setExample }) => {
             </div>
 
             <div className={`dropdown-content bg-base-100 text-base-content rounded-t-box rounded-b-box top-px max-h-32 h-[70vh] w-60 overflow-y-auto shadow-2xl ${contentClasses}`}>
-                    <div className="grid grid-cols-1 gap-3 p-3" tabIndex={0}>
+                    <div className="grid grid-cols-1 gap-3 p-2" tabIndex={0}>
 
                     {
                         EXAMPLES_LIST.map((ex) => (

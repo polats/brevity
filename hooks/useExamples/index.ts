@@ -15,7 +15,12 @@ export const EXAMPLES_LIST: ExampleProps[] = [
     {
         "path" : "/examples/indexer",
         "name" : "🔗 Indexer"
+    },
+    {
+        "path" : "/examples/contract",
+        "name" : "📜 Contract"
     }
+
 ]
 
 export const useExamples = () => {
