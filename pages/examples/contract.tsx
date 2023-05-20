@@ -6,8 +6,13 @@ function App() {
     const func = {
       inputs: [
         {
+          internalType: "number",
+          name: "1 || mainnet || 11155111 || sepolia || 5 || goerli",
+          type: "chainid"
+        },
+        {
           internalType: "address",
-          name: "contract address",
+          name: "0xD34DB33F...",
           type: "address"
         }
       ],
