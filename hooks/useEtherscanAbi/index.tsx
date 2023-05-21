@@ -28,27 +28,31 @@ const fetchContracts = async(contractDetails) : Promise<any> => {
 
     if (chainPrefix == null) {
         return {
-            data: "invalid chainid",
+            status: 1,
             error: "invalid chainid",
-            isError: true
+            message: "invalid chainid"
         }
     }
 
     // check if address is valid
-    console.log(isAddress(contractDetails.address));
+
+    if (!isAddress(contractDetails.address)) {
+        return {
+            status: 1,
+            error: "invalid address",
+            message: "invalid address"
+        }
+    }
+
 
     let URL = 'https://api' + chainPrefix + ".etherscan.io/api?module=contract" + 
     "&action=getabi&address=" + contractDetails.address + "&apikey="
     + API_KEY;
-    
-    console.log(URL);
 
     const EXAMPLE_CONTRACT = "0xc3c8a1e1ce5386258176400541922c414e1b35fd";
 
     const response = await fetch(URL);
     const data = await response.json();
-
-    console.log(data);
 
     return data;
 
@@ -69,8 +73,6 @@ export const useEtherscanAbi = (contractDetails: ContractDetailsProps) => {
     contractDetails,
     fetchContracts
   );
-
-  console.log(error)
 
   return {
     data,
