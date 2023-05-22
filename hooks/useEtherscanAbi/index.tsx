@@ -29,7 +29,7 @@ const fetchContracts = async(contractDetails) : Promise<any> => {
     if (chainPrefix == null) {
         return {
             status: 1,
-            error: "invalid chainid",
+            error: "invalid chainid. Can use any of the following: 1, mainnet, 11155111, sepolia, 5, or goerli",
             message: "invalid chainid"
         }
     }
@@ -39,7 +39,7 @@ const fetchContracts = async(contractDetails) : Promise<any> => {
     if (!isAddress(contractDetails.address)) {
         return {
             status: 1,
-            error: "invalid address",
+            error: "invalid address - make sure the address is a valid ethereum address",
             message: "invalid address"
         }
     }

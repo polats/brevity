@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { AbiViewer } from "../../components/abiviewer";
+import { Anchor } from "../../components/anchor";
+import { AbiDefinedViewFunction } from "../../core/types";
 
 function App() {
 
@@ -7,7 +9,7 @@ function App() {
       inputs: [
         {
           internalType: "number",
-          name: "1 || mainnet || 11155111 || sepolia || 5 || goerli",
+          name: "1 || mainnet || 11155111 || sepolia || ....",
           type: "chainid"
         },
         {
@@ -34,13 +36,24 @@ function App() {
 
     return (
     <div className="App">
+      <li key={func.name} className="flex flex-col gap-2">
+        <h3 className="font-bold text-2xl">Adding A Deployed Contract</h3>
+        <p className="">
+          To add an already deployed contract to the <b>Contracts</b> sidebar, we first need to retrieve its ABI. An ABI viewer is provided below which retrieves the ABI from {" "}
+          <Anchor href="https://etherscan.io">
+            Etherscan
+          </Anchor>
+        . <br></br>
+        </p>    
+        Please input the contract details:
           <AbiViewer
               address={"0x0"}
-              func={func}
+              func={func as AbiDefinedViewFunction}
               initialCollapsed={false}
             />
-    </div>
-  );
+        </li>
+      </div>
+    );
 
 }
 

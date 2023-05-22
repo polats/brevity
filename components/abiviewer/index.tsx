@@ -12,7 +12,6 @@ import { useContractRead } from "wagmi";
 import { useEtherscanAbi, type ContractDetailsProps } from "../../hooks/useEtherscanAbi";
 import { Container } from "../function/container";
 import { AbiOutput } from "../abioutput";
-import { Anchor } from "../anchor";
 import { use, useEffect } from "react";
 
 type ViewProps = {
@@ -42,7 +41,7 @@ export const AbiViewer = ({ address, func, initialCollapsed }: ViewProps) => {
 //     address: Address
 // }
 
-    const { data, isLoading, isError, error, refetch } = useEtherscanAbi
+    const { data, isLoading, isError, error } = useEtherscanAbi
     ({
         chainid: formattedArgs[0] as number,
         address: formattedArgs[1] as Address,
@@ -52,19 +51,7 @@ export const AbiViewer = ({ address, func, initialCollapsed }: ViewProps) => {
     useToggle(initialCollapsed);
 
   return (
-    <li key={func.name} className="flex flex-col gap-2">
-
-    <h3 className="font-bold text-2xl">Adding A Deployed Contract</h3>
-    <p className="">
-          To add an already deployed contract to the <b>Contracts</b> sidebar, we first need to retrieve its ABI. An ABI viewer is provided below which retrieves the ABI from {" "}
-          <Anchor href="https://etherscan.io">
-            Etherscan
-          </Anchor>
-          . <br></br>
-    </p>    
-
-    Please input the contract details:
-      {!collapsed && (
+      !collapsed && (
         <>
           <Inputs name={func.name} args={args} updateValue={updateValue} />
           <Container>
@@ -78,7 +65,6 @@ export const AbiViewer = ({ address, func, initialCollapsed }: ViewProps) => {
             />
           </Container>
         </>
-      )}
-    </li>
+      )
   );
 };
