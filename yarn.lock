@@ -1299,15 +1299,6 @@
     "@types/scheduler" "*"
     csstype "^3.0.2"
 
-"@types/react@^16.8.3":
-  version "16.14.41"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.41.tgz#55c4e7ebb736ca4e2379e97a4e0c1803150ed8d4"
-  integrity sha512-h+joCKF2r5rdECoM1U8WCEIHBp5/0TSR5Nyq8gtnnYY1n2WqGuj3indYqTjMb2/b5g2rfxJV6u4jUFq95lbT6Q==
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
 "@types/scheduler@*":
   version "0.16.3"
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.3.tgz#cef09e3ec9af1d63d2a6cc5b383a737e24e6dcf5"
@@ -2901,10 +2892,10 @@ eth-rpc-errors@^4.0.2:
   dependencies:
     fast-safe-stringify "^2.0.6"
 
-ethereum-indexer-browser@^0.6.4:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/ethereum-indexer-browser/-/ethereum-indexer-browser-0.6.4.tgz#8f39b46accf2041d819a3ee18b4bc22552241428"
-  integrity sha512-eG/rZaXXtybDaTgblXtHvJxu/QoF5CmMg6ABKSoFP2+4h1YDmgwsV153YRCI3bcmi88/XOJwsk5gnY6AKKTAiQ==
+ethereum-indexer-browser@^0.6.5:
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/ethereum-indexer-browser/-/ethereum-indexer-browser-0.6.5.tgz#fd8dea01b371a964fe15ec339b9e7304c6aa11b1"
+  integrity sha512-U9TMFEBvXJaK6lht3/eCW7diLUpyeoWifiJiBb/g+qKPDCZmk2ceAgatnfdbLXoVzMqEVf5KpXR7AymAX3BjtA==
   dependencies:
     ethereum-indexer "0.6.4"
     idb-keyval "^6.2.0"
@@ -5869,13 +5860,6 @@ use-debounce@^8.0.3:
   version "8.0.4"
   resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-8.0.4.tgz#27e93b2f010bd0b8ad06e9fc7de891d9ee5d6b8e"
   integrity sha512-fGqsYQzl8kLHF2QpQSgIwgOgJmnh6j5L6SIzQiHdLfwp3q1egUL3btq5Bg2SJysH6A0ILLgT2IqXZKoNJr0nFw==
-
-use-hooks@^2.0.0-rc.5:
-  version "2.0.0-rc.5"
-  resolved "https://registry.yarnpkg.com/use-hooks/-/use-hooks-2.0.0-rc.5.tgz#05bdfb89cf088ef49961858b529d090a15f48680"
-  integrity sha512-85OzZPao3Rk6GFJqaeTHRj5MluTFhzDxUikwytiwJYGR4+2tEeH86Ym1DMDM6NzJ3bwueaX7kc+rlF/5J074TA==
-  dependencies:
-    "@types/react" "^16.8.3"
 
 use-sidecar@^1.1.2:
   version "1.1.2"
