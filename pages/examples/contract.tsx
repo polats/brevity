@@ -47,9 +47,7 @@ function App() {
         </p>    
         Please input the contract details:
           <AbiViewer
-              address={"0x0"}
               func={func as AbiDefinedViewFunction}
-              initialCollapsed={false}
             />
         </li>
       </div>

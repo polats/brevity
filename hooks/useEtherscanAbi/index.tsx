@@ -6,6 +6,12 @@ import {
 
 const API_KEY = process.env.NEXT_PUBLIC_ETHERSCAN_API_KEY;
 
+
+export const ABI_FETCH_ERRORS = {
+    INVALID_CHAINID: "invalid chainid. Can use any of the following: 1, mainnet, 11155111, sepolia, 5, or goerli",
+    INVALID_ADDRESS: "invalid address. Please make sure it's a valid ethereum address",
+}
+
 const fetchContracts = async(contractDetails) : Promise<any> => {
 
     let chainPrefix = null;
@@ -28,9 +34,7 @@ const fetchContracts = async(contractDetails) : Promise<any> => {
 
     if (chainPrefix == null) {
         return {
-            status: 1,
-            error: "invalid chainid. Can use any of the following: 1, mainnet, 11155111, sepolia, 5, or goerli",
-            message: "invalid chainid"
+            brevityerror: ABI_FETCH_ERRORS.INVALID_CHAINID
         }
     }
 
@@ -38,9 +42,7 @@ const fetchContracts = async(contractDetails) : Promise<any> => {
 
     if (!isAddress(contractDetails.address)) {
         return {
-            status: 1,
-            error: "invalid address - make sure the address is a valid ethereum address",
-            message: "invalid address"
+            brevityerror: ABI_FETCH_ERRORS.INVALID_ADDRESS
         }
     }
 
@@ -48,8 +50,6 @@ const fetchContracts = async(contractDetails) : Promise<any> => {
     let URL = 'https://api' + chainPrefix + ".etherscan.io/api?module=contract" + 
     "&action=getabi&address=" + contractDetails.address + "&apikey="
     + API_KEY;
-
-    const EXAMPLE_CONTRACT = "0xc3c8a1e1ce5386258176400541922c414e1b35fd";
 
     const response = await fetch(URL);
     const data = await response.json();
