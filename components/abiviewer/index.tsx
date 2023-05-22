@@ -20,8 +20,9 @@ export const AbiViewer = ({ func }: ViewProps) => {
 
     const { data, isLoading, isError, error } = useEtherscanAbi
     ({
-        chainid: formattedArgs[0] as number,
-        address: formattedArgs[1] as Address,
+        name: formattedArgs[0] as string,
+        chainid: formattedArgs[1] as number,
+        address: formattedArgs[2] as Address
     });
 
   return (

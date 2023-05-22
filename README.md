@@ -26,6 +26,10 @@ yarn start
 * Update the ```src/scripts/deploy.ts``` with the contract name and deploy function
 * Deploy the contract via ```yarn deploy```
 
+### Adding External Contracts
+* [contractInfo.ts](contractInfo.ts) needs to be updated with the contract chain, name, address and ABI
+* You can use the example/contract app to more easily add an external contract
+
 ### Reference Projects
 
 * https://github.com/scaffold-eth/scaffold-eth-typescript

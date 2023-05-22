@@ -1,6 +1,7 @@
 import { Result } from "../../core/types";
 import { ABI_FETCH_ERRORS } from "../../hooks/useEtherscanAbi";
 import { Square2StackIcon } from "@heroicons/react/24/outline";
+import { AbiClipboard } from "../abiclipboard";
 
 type OutputProps = {
   data: Result;
@@ -21,6 +22,7 @@ const formatMessage = (data: any) => {
 
   switch (message) {
 
+    case ABI_FETCH_ERRORS.NAME_NOT_FOUND:
     case ABI_FETCH_ERRORS.INVALID_CHAINID:
       return (
         <>{message}</>
@@ -45,24 +47,25 @@ const formatMessage = (data: any) => {
   }
 }
 
-const formatData = (data: any) => {
+const formatData = (data: any) : JSX.Element => {
 
-  if (data === undefined || data === null) return "";
+  if (data === undefined || data === null) return (<></>);
     
-  if (data.error) return data.error; 
-
   if (data.brevityerror) {
     return formatMessage(data);
   }
 
-  if (data.result) {
+  if (data.message != "OK") {
     return (
-      <p>
+      <div>
       {data.result}
-      </p>
+      </div>
     )
   }
 
+  return (
+    <AbiClipboard abi={data.result} chain={data.chain} address={data.address} name={data.name} />
+)
 //   if (typeof data === "string") return data;
 //   if (Array.isArray(data)) return `(${data.map(formatData).join(", ")})`;
 //   return data.toString();
