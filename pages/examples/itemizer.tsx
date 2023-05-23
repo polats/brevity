@@ -87,7 +87,7 @@ function App() {
 
     useEffect(() => {
         const ethereum = (window as any).ethereum;
-        start(ethereum);
+        // start(ethereum);
     }, []);
 
     // we now need to get a handle on a ethereum provider

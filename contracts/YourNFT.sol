@@ -19,7 +19,7 @@ contract YourNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   constructor() ERC721("YourNFT", "YNFT") {}
 
   function _baseURI() internal view virtual override returns (string memory) {
-    return "https://ipfs.io/ipfs/";
+    return "";
   }
 
   function _beforeTokenTransfer(

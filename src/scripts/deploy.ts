@@ -24,13 +24,13 @@ const CONTRACT_INFO_FILE_PATH_TS = "contractInfo.ts";
 // const CONTRACT_SCRIPT = 'Counter.s.sol'
 // const DEPLOY_FUNCTION = 'CounterScript';
 
-// const CONTRACT_NAME = 'YourNFT';
-// const CONTRACT_SCRIPT = 'YourNFT.deploy.s.sol'
-// const DEPLOY_FUNCTION = 'YourNFTDeploy';
+const CONTRACT_NAME = 'YourNFT';
+const CONTRACT_SCRIPT = 'YourNFT.deploy.s.sol'
+const DEPLOY_FUNCTION = 'YourNFTDeploy';
 
-const CONTRACT_NAME = 'InventoryFacet';
-const CONTRACT_SCRIPT = 'InventoryFacet.s.sol'
-const DEPLOY_FUNCTION = 'Deploy';
+// const CONTRACT_NAME = 'InventoryFacet';
+// const CONTRACT_SCRIPT = 'InventoryFacet.s.sol'
+// const DEPLOY_FUNCTION = 'Deploy';
 
 
 const getAddressFromStdout = (stdout: string): string => {
@@ -121,7 +121,8 @@ export const createFoundryDeployArgs = async (
   switch (network) {
     case 'sepolia':
     case 'goerli':
-      mnemonic = process.env.TESTNET_MNEMONIC as string;
+      case 'mumbai':
+        mnemonic = process.env.TESTNET_MNEMONIC as string;
       break;
   }
 
