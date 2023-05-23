@@ -86,12 +86,16 @@ const newContractInfoJson = () => {
             <span className="sr-only">Copy Address</span>
             {
               isCopied ?
-              <CheckIcon className="h-6 w-6" />
-              : <Square2StackIcon className="h-6 w-6" />
+              <CheckIcon className="h-8 w-8" />
+              : <Square2StackIcon className="h-8 w-8" />
             }
           </button>      
       </div>
       
+      <h4 className="">
+        Copying to clipboard will also temporarily add the contract to the sidebar. Try selecting some contracts to have the sidebar update.
+        This will not be saved unless you replace your local contractInfo.ts file.
+      </h4>
       {!collapsed && (
         <div className="font-mono text-sm p-4 text-black dark:text-black bg-slate-100 dark:bg-slate-100 rounded border border-slate-200 dark:border-slate-200">
           {abi}
