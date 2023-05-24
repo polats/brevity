@@ -2,9 +2,20 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Field } from "../../components/field";
 import { TokenUriViewer } from "../../components/tokenuriviewer";
+import { ClipboardCopier } from "../../components/clipboardcopier";
 
 function App() {
 
+    const EXAMPLE_TOKENURIS = [
+        {
+            name: "Arcadians",
+            tokenUri: "https://api.arcadians.io"
+        },
+        {
+            name: "CryptoKitties",
+            tokenUri: "https://api.cryptokitties.co/v3/kitties"
+        }
+    ]
 
     useEffect(() => {
 
@@ -69,8 +80,20 @@ function App() {
 
         <h2 className="font-bold">TokenURI Gallery Component</h2>
         <p>
-            Brevity also provides a TokenURI Viewer component to visualize the NFT metadata.
+            Brevity also provides a TokenURI Viewer component to visualize the NFT metadata. 
+            You can copy the given URIs via the clipboard buttons and paste to the URI.
         </p>
+        <div className="flex space-x-5">
+        {
+            EXAMPLE_TOKENURIS.map((example) => (
+                <div className="flex space-x-2">
+                <ClipboardCopier 
+                    label={example.name} 
+                    clipboardText={example.tokenUri}/>  
+                </div> 
+            ))
+        }
+        </div>
         <br></br>  
         <div className="flex space-x-2">
             <div className="flex flex-col space-y-2">
@@ -94,8 +117,7 @@ function App() {
                 />
             </div>
             <div className="flex flex-col space-y-2">
-                <TokenUriViewer>
-                    {uri + "/" + tokenId}
+                <TokenUriViewer uri={uri + "/" + tokenId}>
                 </TokenUriViewer>
             </div>
         </div>
