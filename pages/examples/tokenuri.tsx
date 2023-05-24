@@ -21,7 +21,7 @@ function App() {
 
     }, []);
 
-    const [uri, setUri] = useState<string>("api/tokenuri");
+    const [uri, setUri] = useState<string>("http://localhost:3000/api/tokenuri");
     const [tokenId, setTokenId] = useState<string>("1");
 
     const handleChangeTokenID =(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,8 +117,7 @@ function App() {
                 />
             </div>
             <div className="flex flex-col space-y-2">
-                <TokenUriViewer uri={uri + "/" + tokenId}>
-                </TokenUriViewer>
+                <TokenUriViewer uri={uri + "/" + tokenId}/>
             </div>
         </div>
     </div>
