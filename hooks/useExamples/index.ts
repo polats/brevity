@@ -13,6 +13,10 @@ export const EXAMPLES_LIST: ExampleProps[] = [
         "name" : "🍥 ERC-6551 Itemizer"
     },
     {
+        "path" : "/examples/tokenuri",
+        "name" : "🖼️ Tokenuri Server"
+    },
+    {
         "path" : "/examples/contract",
         "name" : "📜 Contract"
     },
