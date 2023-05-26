@@ -78,9 +78,9 @@ function App() {
         <br></br>        
         <br></br>        
 
-        <h2 className="font-bold">TokenURI Gallery Component</h2>
+        <h2 className="font-bold">TokenURI Viewer Component</h2>
         <p>
-            Brevity also provides a TokenURI Viewer component to visualize the NFT metadata. 
+            Brevity also provides a TokenURI Viewer component to display the NFT metadata. 
             You can copy the given URIs via the clipboard buttons and paste to the URI.
         </p>
         <div className="flex space-x-5">
