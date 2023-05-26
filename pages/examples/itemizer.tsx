@@ -1,7 +1,7 @@
-import { Anchor } from "../../components/anchor";
 import { useQueryStates, queryTypes } from "next-usequerystate";
 import { useRouterReady } from "../../hooks/useRouterReady";
 import { Field } from "../../components/field";
+import { useNFTDetails } from "../../hooks/useNFTDetails";
 
 function App() {
 
@@ -15,8 +15,6 @@ function App() {
     }
   );
 
-
-
   const handleTokenInfoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newState = {
       ...tokenInfo,
@@ -24,6 +22,8 @@ function App() {
     }
     setTokenInfo(newState)
   }
+
+  const { data, isLoading, isError, error } = useNFTDetails(tokenInfo);  
 
     return (
     <div className="App">
@@ -62,6 +62,9 @@ function App() {
                 />            
           </div>
       }
+          { isLoading && <p>Loading...</p> }
+          { isError && <p>Error: {error.toString()}</p> }
+          { data && <p>{JSON.stringify(data)}</p> }
   </div>
   );
 
