@@ -46,7 +46,7 @@ function App() {
         <br></br>
         <br></br>
         </p>
-        <li>
+        <li key="1">
             <Link
                 href={`https://github.com/polats/brevity/blob/main/pages/api/tokenuri/%5Btokenid%5D.ts`}
                 className={`underline focus:underline focus:outline-none hover:bg-slate-200 focus:bg-slate-200 dark:hover:bg-white dark:hover:text-black dark:focus:bg-white dark:focus:text-black`}
@@ -55,7 +55,7 @@ function App() {
             </Link>           
             : the API route that returns the metadata
         </li>
-        <li>
+        <li key="2">
             <Link
                 href={`https://github.com/polats/brevity/blob/main/src/constants/tokenuri.ts`}
                 className={`underline focus:underline focus:outline-none hover:bg-slate-200 focus:bg-slate-200 dark:hover:bg-white dark:hover:text-black dark:focus:bg-white dark:focus:text-black`}

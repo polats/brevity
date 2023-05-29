@@ -2,10 +2,13 @@ import { useQueryStates, queryTypes } from "next-usequerystate";
 import { useRouterReady } from "../../hooks/useRouterReady";
 import { Field } from "../../components/field";
 import { useNFTDetails } from "../../hooks/useNFTDetails";
+import { ORAGallery } from "../../components/oragallery";
 
 function App() {
 
   const routerReady = useRouterReady();
+
+  const ORA_LOCATION = "/assets/arcadians.ora"
 
   const [tokenInfo, setTokenInfo] = useQueryStates(
     {
@@ -62,10 +65,16 @@ function App() {
                 />            
           </div>
       }
+        <div>
+          parts loaded from <b>{ORA_LOCATION}</b>
+        </div>
+        <ORAGallery path={ORA_LOCATION} />
+        <div className="flex flex-col">
           { isLoading && <p>Loading...</p> }
           { isError && <p>Error: {error.toString()}</p> }
           { data && <p>{JSON.stringify(data)}</p> }
-  </div>
+        </div>
+    </div>
   );
 
 }

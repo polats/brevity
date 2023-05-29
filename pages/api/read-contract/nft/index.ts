@@ -52,8 +52,6 @@ export default async function handler(
     const { address, chain, func, ...args } = req.query;
     const wagmiAbi =  contractInfo.mumbai[0].abi // retrieved from the test MyNFT contract
 
-  console.log(args)
-
     if (!address) {
         return res.status(400).json({
             error: 'Missing address',
