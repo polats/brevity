@@ -5,6 +5,7 @@ import xml2js from 'xml2js';
 import sharp from 'sharp';
 import Image from 'next/image';
 import dynamic from "next/dynamic";
+import { ClipboardCopier } from "../../components/clipboardcopier";
 
 const ReactJson = dynamic(
   () => import('react-json-view'),
@@ -28,8 +29,6 @@ buffer: Buffer;
 x: number;
 y: number;
 };
-
-
 
     const getImageSizeFromXml = async (xmlString: string) => {
       const parser = new xml2js.Parser()
@@ -181,40 +180,6 @@ export const ORAGallery = ({ path }: OraGalleryProps) => {
 
           setPartsArray(partsArray);
     
-          // const stackXmlBuffer = stackXmlEntry?.getData();
-          // const partsArray = (await getLayersFromXml(stackXmlBuffer as Buffer)).reverse();    
-          // const { width, height } = await getImageSizeFromXml(stackXmlBuffer as Buffer);
-          // const imageBuffers = await selectImagesFromZip(zipPath, partsArray, attributes);
-    
-
-
-          // zip.forEach((relativePath, zipEntry) => {
-          //   if (!zipEntry.dir) {
-          //     zipEntry.async('string').then((content) => {
-          //       console.log('File:', zipEntry.name);
-          //       // console.log('Content:', content);
-          //     });
-          //   }
-          // });
-          // const body = await axios.get(path, {
-          //     responseType: 'arraybuffer',
-          // });                
-          // var zip = new AdmZip(body.data);
-          // const stackXmlEntry = zip.getEntry('stack.xml');
-          // const stackXmlBuffer = stackXmlEntry?.getData();
-          // console.log(stackXmlBuffer);
-                          
-          // const zip = new AdmZip(response.body);
-          // const stackXmlEntry = zip.getEntry('stack.xml');
-          // const stackXmlBuffer = stackXmlEntry?.getData();
-          // const partsArray = (await getLayersFromXml(stackXmlBuffer as Buffer)).reverse();    
-          // const { width, height } = await getImageSizeFromXml(stackXmlBuffer as Buffer);
-          // const imageBuffers = await selectImagesFromZip(zipPath, partsArray, attributes);
-    
-
-          // const data = await response.json();
-          // console.log(data);
-          // setOraData(data);
       } catch (error) {
           console.log(error);
       }

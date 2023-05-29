@@ -3,12 +3,20 @@ import { useRouterReady } from "../../hooks/useRouterReady";
 import { Field } from "../../components/field";
 import { useNFTDetails } from "../../hooks/useNFTDetails";
 import { ORAGallery } from "../../components/oragallery";
+import { ClipboardCopier } from "../../components/clipboardcopier";
 
 function App() {
 
   const routerReady = useRouterReady();
 
   const ORA_LOCATION = "/assets/arcadians.ora"
+
+  const EXAMPLE_TOKEN_ADDRESSES = [
+    {
+        name: "Arcadians (mainnet)",
+        address: "0xc3c8a1e1ce5386258176400541922c414e1b35fd"
+    }
+  ]
 
   const [tokenInfo, setTokenInfo] = useQueryStates(
     {
@@ -44,7 +52,17 @@ function App() {
         <br/>
         <br/>
         Next we put it the deployed contract details and the token id of the ERC-721 we want to itemize.
-        <br/>
+        Here are some example addresses you can copy to clipboard:
+        {
+          EXAMPLE_TOKEN_ADDRESSES.map((example) => (
+              <div className="flex space-x-2">
+                <ClipboardCopier 
+                  label={example.name} 
+                  clipboardText={example.address}/>  
+                </div> 
+          ))
+        }    
+        
       {
         routerReady &&
           <div className="flex space-x-2 mt-2">
