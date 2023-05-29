@@ -26,6 +26,7 @@
         "next-usequerystate": "^1.7.2",
         "react": "^18.1.0",
         "react-dom": "^18.1.0",
+        "react-json-view": "^1.21.3",
         "sharp": "^0.32.0",
         "swr": "^2.1.5",
         "viem": "^0.3.19",

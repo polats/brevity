@@ -30,8 +30,20 @@ function App() {
 
     return (
     <div className="App">
-        <h3 className="font-bold text-2xl">Token Info</h3>
-        Please input the token details:
+
+        <h3 className="font-bold text-2xl">ERC-6551 Itemizer</h3>
+        <p>
+        This example app creates individual ERC-1155s from a given ERC-721's attributes, 
+        following the Tokenbound ER-6551 standard.
+        <br/><br/>
+        The ORA file in <b>{ORA_LOCATION}</b>  contains images of all the attributes.</p>
+        Expand the json viewer below and click on a src filename to preview each image.
+        <br/><br/>
+        
+        <ORAGallery path={ORA_LOCATION} />
+        <br/>
+        <br/>
+        Next we put it the deployed contract details and the token id of the ERC-721 we want to itemize.
         <br/>
       {
         routerReady &&
@@ -65,15 +77,12 @@ function App() {
                 />            
           </div>
       }
-        <div>
-          parts loaded from <b>{ORA_LOCATION}</b>
-        </div>
-        <ORAGallery path={ORA_LOCATION} />
+        
         <div className="flex flex-col">
           { isLoading && <p>Loading...</p> }
           { isError && <p>Error: {error.toString()}</p> }
           { data && <p>{JSON.stringify(data)}</p> }
-        </div>
+        </div>        
     </div>
   );
 

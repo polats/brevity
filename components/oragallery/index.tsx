@@ -3,7 +3,13 @@ import { useTokenUri } from "../../hooks/useTokenUri";
 import JSZip from 'jszip';
 import xml2js from 'xml2js';
 import sharp from 'sharp';
+import Image from 'next/image';
+import dynamic from "next/dynamic";
 
+const ReactJson = dynamic(
+  () => import('react-json-view'),
+  { ssr: false}
+)
 
 type OraGalleryProps = {
     path: string;
@@ -146,7 +152,23 @@ y: number;
 export const ORAGallery = ({ path }: OraGalleryProps) => {
 
     const [oraData, setOraData] = useState([]);
-    const [partsArray, setPartsArray] = useState([]);
+    const [partsArray, setPartsArray] = useState(null);
+    const [selectedPart, setSelectedPart] = useState(null);
+    const [imageSrc, setImageSrc] = useState('');
+
+    const clickPart = (e) => {
+      if (e.name === "src") {
+        drawPart(e.value);
+      }
+    }
+
+    const drawPart = async (imagePath) => {
+      setSelectedPart(imagePath);
+      const response = await fetch(path);
+      const zip = await JSZip.loadAsync(await response.arrayBuffer());
+      const imageData = await zip.file(imagePath).async('base64');
+      setImageSrc(`data:image/jpeg;base64, ${imageData}`);
+    }
 
     const fetchOraData = async () => {
       try {
@@ -158,10 +180,7 @@ export const ORAGallery = ({ path }: OraGalleryProps) => {
           const { width, height } = await getImageSizeFromXml(xmlString);
 
           setPartsArray(partsArray);
-          // console.log(width, height);
-          console.log(partsArray);
     
-
           // const stackXmlBuffer = stackXmlEntry?.getData();
           // const partsArray = (await getLayersFromXml(stackXmlBuffer as Buffer)).reverse();    
           // const { width, height } = await getImageSizeFromXml(stackXmlBuffer as Buffer);
@@ -208,12 +227,35 @@ export const ORAGallery = ({ path }: OraGalleryProps) => {
     // const { data, isLoading, isError, error } = useTokenUri(uri);    
 
     return (
-        <div className="overflow-auto max-h-96">
-        {
-            // data ? 
-            // renderJSON(data) :
-            //     "No data found"
-        }
+        <div className="grid grid-cols-2 gap-4">
+          <div className="overflow-y-auto h-36">
+          {
+              partsArray &&
+              <ReactJson src={partsArray} theme="hopscotch" onSelect={clickPart} enableClipboard={false}/>
+          }
+          {
+              // data ? 
+              // renderJSON(data) :
+              //     "No data found"
+          }
+          </div>
+
+          <div>
+          {selectedPart}
+
+            {imageSrc ? (
+              <div  style={{width: '100%', height: '100%', position: 'relative'}}>
+                <Image 
+                  src={imageSrc} 
+                  alt={selectedPart} 
+                  layout='fill'
+                  objectFit='contain'                />
+              </div>
+            ) : (
+              <p>No image selected</p>
+            )}
+
+          </div>          
         </div>
   )
 }
