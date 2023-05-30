@@ -1,36 +1,59 @@
 import { useTokenboundAddress } from "../../hooks/useTokenboundAddress"
-import { TokenInfo, TokenboundParams } from "../../core/types"
-import { useEffect } from "react";
+import { createAccount } from "@tokenbound/sdk";
+import { createWalletClient, custom } from "viem";
+import { useAccount } from "wagmi";
+import { create } from "lodash";
+import { retrieveChain } from "../../core/utils";
 
 export const TokenboundInspector = ( {salt, tokenInfo, setTokenboundAddress }) => {
 
-    const tokenboundAddress = useTokenboundAddress({salt, tokenInfo});
+    const optionClasses = "self-start border border-black dark:border-white px-2 text-sm disabled:cursor-not-allowed disabled:opacity-50 hover:bg-slate-200 focus:bg-slate-200 dark:hover:bg-white dark:hover:text-black dark:focus:bg-white dark:focus:text-black focus:outline-none"
 
-    // const { data, isLoading, isError, error } = useTokenUri(uri);    
+    const { data } = useTokenboundAddress({salt, tokenInfo});
+    const { address, isConnecting, isDisconnected } = useAccount();
 
-    // useEffect(() => {
-    //     setTokenboundAddress(tokenboundAddress);
-    // }, [tokenboundAddress])
+    const createTokenboundAccount = async () => {
+
+        const client = createWalletClient({
+            account: address,
+            chain: retrieveChain(tokenInfo.chain),
+            transport: custom(window.ethereum)
+        })
+
+        const hash = await createAccount(
+            tokenInfo.address,
+            tokenInfo.tokenid,
+            client
+        )
+    }
 
     return (
         <div className="overflow-auto max-h-96">
             {
-                tokenboundAddress?.data ?
-                "Tokenbound address: " + tokenboundAddress?.data?.tokenboundAddress :
-                    "No data found"
+            data &&
+                <div>
+                    <b>Tokenbound Address: </b>
+                    {
+                        data?.tokenboundAddress ?
+                        data?.tokenboundAddress :
+                            "invalid token info"
+                    }
+                    <br/>
+                    {
+                        
+                        data?.contractBytecode ?
+                        "Wallet already deployed" : 
+                        data?.tokenboundAddress &&
+                        (
+                            <div>
+                                <button className={`bg-base-100 text-base-content cursor-pointer font-sans gap-2 py-2 px-2 ${optionClasses}`} onClick={createTokenboundAccount}>
+                                    Deploy (make sure you're connected to the right chain and have enough ETH)
+                                </button>
+                            </div>
+                        )
+                    }
+                </div>
             }
-            <br/>
-            {
-                tokenboundAddress?.data?.contractBytecode ?
-                "deployed" : "not deployed"
-            }
-
-        {
-            
-            // data ? 
-            // renderJSON(data) :
-            //     "No data found"
-        }
         </div>
   )
 }
