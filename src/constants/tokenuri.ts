@@ -51,5 +51,25 @@ export default {
       }
     ],
     animation_url: "https://xgr-arcadians-reloaded.vercel.app/animation/1112"
-  }
+  },
+  "3": {
+    "name": "Gun",
+    "description": "A Test Token from Brevity",
+    "image": "https://brevity-demo.vercel.app/assets/images/gun.png",
+  },  
+  "4": {
+    "name": "Top",
+    "description": "A Test Token from Brevity",
+    "image": "https://brevity-demo.vercel.app/assets/images/top.png",
+  },  
+  "5": {
+    "name": "Laptop",
+    "description": "A Test Token from Brevity",
+    "image": "https://brevity-demo.vercel.app/assets/images/laptop.png",
+  },  
+  "6": {
+    "name": "Leggings",
+    "description": "A Test Token from Brevity",
+    "image": "https://brevity-demo.vercel.app/assets/images/leggings.png",
+  },      
 };
