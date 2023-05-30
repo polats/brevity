@@ -1,20 +1,27 @@
 import { useQueryStates, queryTypes } from "next-usequerystate";
-import { useRouterReady } from "../../hooks/useRouterReady";
 import { Field } from "../../components/field";
-import { useNFTDetails } from "../../hooks/useNFTDetails";
 import { ORAGallery } from "../../components/oragallery";
 import { ClipboardCopier } from "../../components/clipboardcopier";
+import { useNFTDetails } from "../../hooks/useNFTDetails";
+import { useRouterReady } from "../../hooks/useRouterReady";
+import { TokenboundInspector } from "../../components/tokenboundinspector";
+import { useState } from "react";
 
 function App() {
 
   const routerReady = useRouterReady();
 
   const ORA_LOCATION = "/assets/arcadians.ora"
+  const TOKENBOUND_SALT = 0;
 
   const EXAMPLE_TOKEN_ADDRESSES = [
     {
         name: "Arcadians (mainnet)",
         address: "0xc3c8a1e1ce5386258176400541922c414e1b35fd"
+    },
+    {
+        name: "Arcadians (goerli)",
+        address: "0x03f1dba6f15f145a1fbb5e29940d2e7d13f4d4f8"
     }
   ]
 
@@ -35,6 +42,7 @@ function App() {
   }
 
   const { data, isLoading, isError, error } = useNFTDetails(tokenInfo);  
+  const [ tokenboundAddress, setTokenboundAddress ] = useState("");
 
     return (
     <div className="App">
@@ -68,7 +76,7 @@ function App() {
           <div className="flex space-x-2 mt-2">
                 <Field
                     disabled={false}
-                    inputName={"mainnet, sepolia, goerli, ..."}
+                    inputName={"mainnet, goerli, ..."}
                     value={tokenInfo.chain || ''}
                     name="chain"
                     type="chain"
@@ -96,11 +104,20 @@ function App() {
           </div>
       }
         
+        {tokenboundAddress}
+
+        <TokenboundInspector 
+          salt={TOKENBOUND_SALT}
+          tokenInfo={tokenInfo}
+          setTokenboundAddress={setTokenboundAddress}
+        />
+
         <div className="flex flex-col">
           { isLoading && <p>Loading...</p> }
           { isError && <p>Error: {error.toString()}</p> }
           { data && <p>{JSON.stringify(data)}</p> }
-        </div>        
+        </div> 
+
     </div>
   );
 

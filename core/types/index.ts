@@ -56,6 +56,16 @@ export type ContractsInChain = {
   contracts: ContractDetails[];
 }
 
+export type TokenInfo = {
+  chain: string,
+  address: Address,
+  tokenid: string
+}
+export type TokenboundParams = {
+  salt: number;
+  tokenInfo: TokenInfo;
+}
+
 export type Result = string | BigNumber | undefined | null | Result[];
 
 export * from "abitype";

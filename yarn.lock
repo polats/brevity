@@ -1210,6 +1210,11 @@
     "@tanstack/query-core" "4.29.7"
     use-sync-external-store "^1.2.0"
 
+"@tokenbound/sdk@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@tokenbound/sdk/-/sdk-0.2.0.tgz#62ad84c8e7350c9152046163be4e903b01837081"
+  integrity sha512-G0TF+dVLugs/MCPamIqOv94szivUw5kb0Gy5aPnSMTzTuPjAR6aBwD3qRCnv34g63nnx0JO1R5/ZboiMh6NfYQ==
+
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.9.tgz#df4907fc07a886922637b15e02d4cebc4c0021b2"

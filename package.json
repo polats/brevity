@@ -17,6 +17,7 @@
         "@headlessui/react": "^1.7.14",
         "@heroicons/react": "^2.0.18",
         "@rainbow-me/rainbowkit": "^0.12.13",
+        "@tokenbound/sdk": "^0.2.0",
         "daisyui": "^2.51.6",
         "ethereum-indexer-browser": "^0.6.5",
         "ethereum-indexer-js-processor": "^0.6.4",
