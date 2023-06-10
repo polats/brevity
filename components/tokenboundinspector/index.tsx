@@ -4,6 +4,7 @@ import { createWalletClient, custom } from "viem";
 import { useAccount } from "wagmi";
 import { create } from "lodash";
 import { retrieveChain } from "../../core/utils";
+import { useEffect } from "react";
 
 export const TokenboundInspector = ( {salt, tokenInfo, setTokenboundAddress }) => {
 
@@ -26,6 +27,12 @@ export const TokenboundInspector = ( {salt, tokenInfo, setTokenboundAddress }) =
             client
         )
     }
+
+    useEffect(() => {
+        if (data?.tokenboundAddress) {
+            setTokenboundAddress(data?.tokenboundAddress)
+        }
+    }, [data])
 
     return (
         <div className="overflow-auto max-h-96">

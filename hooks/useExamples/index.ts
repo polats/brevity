@@ -23,7 +23,12 @@ export const EXAMPLES_LIST: ExampleProps[] = [
     {
         "path" : "/examples/indexer",
         "name" : "🔗 Basic Indexer"
+    },
+    {
+        "path" : "/examples/tbasnapshot",
+        "name" : "📸 TBA Snapshot"
     }
+
 
 ]
 
