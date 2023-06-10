@@ -46,7 +46,7 @@ function App() {
 
     return (
     <div className="App">
-        Edit the account addresses below to get their TBA equivalent 👉<br/><br/>         
+        Edit the NFT address and token id below to get their TBA equivalent 👉<br/><br/>         
         <div className="grid grid-cols-2 gap-4">
           <div className="overflow-y-auto h-72">
               <ReactJson src={accountJson} theme="hopscotch" onEdit={updateAccounts} enableClipboard={true}/>
